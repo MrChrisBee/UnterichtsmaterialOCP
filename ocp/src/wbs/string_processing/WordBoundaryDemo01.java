@@ -3,6 +3,11 @@ package wbs.string_processing;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Word Boundaries
+//Symbol Beschreibung
+//\b Wortgrenze
+//\B keine Wortgrenze
+
 public class WordBoundaryDemo01 {
 	public static void main(String[] args) {
 		String regex = "\\B";
