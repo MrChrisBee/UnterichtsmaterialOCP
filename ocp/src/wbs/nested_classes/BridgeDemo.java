@@ -6,7 +6,7 @@ import java.util.List;
 public class BridgeDemo {
 
 	/*
-	 * an einem bridgeturnier nehmen 10 bridge-spielerinnen teil.
+	 * an einem Bridgeturnier nehmen 10 bridge-Spielerinnen teil.
 	 * 
 	 * wir listen alle möglichen zusammenstellungen von 4 damen
 	 * zu einer bridge-partie auf.
@@ -26,7 +26,6 @@ public class BridgeDemo {
 				n++;
 			}
 		}
-
 		System.out.println("bei " + bridgeSpielerinnen.length
 				+ " teilnehmerinnen gibt es " + n
 				+ " mögliche zusammenstellungen von 4 spielerinnen");

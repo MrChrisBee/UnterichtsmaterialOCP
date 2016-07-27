@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 /*
  * jedes testzentrum hat einen namen, eine x- koordinate, eine y- koordinate
  */
@@ -55,8 +54,9 @@ public class AbstandDemo {
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public static List<TestZentrum> zentrenSortiertNachAbstand(
-			final List<TestZentrum> zentren, final TestKandidat kandidat) {
+	public static List<TestZentrum> zentrenSortiertNachAbstand(final List<TestZentrum> zentren,
+			final TestKandidat kandidat) {
+		//cmp referenziert eine Instanz einer anonyme Klasse
 		Comparator<TestZentrum> cmp = new Comparator<TestZentrum>() {
 			@Override
 			public int compare(TestZentrum z1, TestZentrum z2) {
@@ -80,21 +80,19 @@ public class AbstandDemo {
 		List<TestKandidat> kandidaten = new ArrayList<>();
 
 		for (int i = 1; i <= 5; i++) {
-			zentren.add(new TestZentrum("zentrum_" + i, (int) (1 + Math
-					.random() * 10), (int) (1 + Math.random() * 10)));
+			zentren.add(
+					new TestZentrum("zentrum_" + i, (int) (1 + Math.random() * 10), (int) (1 + Math.random() * 10)));
 		}
 
 		for (int i = 1; i <= 5; i++) {
-			kandidaten.add(new TestKandidat("kandidat_" + i, (int) (1 + Math
-					.random() * 10), (int) (1 + Math.random() * 10)));
+			kandidaten.add(
+					new TestKandidat("kandidat_" + i, (int) (1 + Math.random() * 10), (int) (1 + Math.random() * 10)));
 		}
 
 		for (TestKandidat kandidat : kandidaten) {
 			System.out.println(kandidat);
-			for (TestZentrum zentrum : zentrenSortiertNachAbstand(zentren,
-					kandidat)) {
-				System.out.println("   " + zentrum + " -> "
-						+ abstand(zentrum, kandidat));
+			for (TestZentrum zentrum : zentrenSortiertNachAbstand(zentren, kandidat)) {
+				System.out.println("   " + zentrum + " -> " + abstand(zentrum, kandidat));
 			}
 		}
 	}

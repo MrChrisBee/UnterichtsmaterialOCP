@@ -7,7 +7,7 @@ public abstract class MyListDemo {
 
 	/*
 	 * wir bestücken eine list mit den zahlen von 1 bis 4
-	 * und geben dann alle teillisten dieser list aus
+	 * und geben dann alle Teillisten dieser list aus
 	 */
 	public static void main(String[] args) {
 		

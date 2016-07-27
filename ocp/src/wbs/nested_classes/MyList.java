@@ -11,7 +11,7 @@ public class MyList<T> implements Iterable<List<T>> {
 	public MyList(List<T> list) {
 		this.list = list;
 	}
-
+	//Member Klasse
 	class Itr implements Iterator<List<T>> {
 		int size = (1 << list.size());
 		int pos = 0;
