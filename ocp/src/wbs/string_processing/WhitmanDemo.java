@@ -1,0 +1,60 @@
+package wbs.string_processing;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+/*
+ * Wir ermitteln für jedes Wort in song_of_mysqlf, wie häufig es vorkommt
+ * wir geben alle Wörter aus:
+ * - alphanumerisch aufsteigend
+ * - absteigend nach Häufigkeit
+ * 
+ *  wir ignorieren groß und kleinschriebung
+ */
+
+
+public class WhitmanDemo {
+
+	public static void main(String[] args) {
+
+		// nutze den Sequenzer in einer map
+		Map<String, Sequencer> words = new TreeMap<>();
+		// greife auf die .txt Datei zu
+		List<String> listOfWords = new ArrayList<>();
+		String path = "recources//io//characterdata//song_of_myself_whitman.txt";
+		File file = new File(path);
+		String token;
+		try (Scanner scanner = new Scanner(file)) {
+			scanner.useDelimiter("\\W+");
+			while (scanner.hasNext()) { // sichere Ihren Inhalt
+				token = scanner.next().toLowerCase();
+				if (!listOfWords.contains(token)) {
+					listOfWords.add(token);
+					words.put(token, new Sequencer());
+					words.get(token).next();
+				} else {
+					words.get(token).next(); // zähle hoch
+				}
+			}
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		List<Map.Entry<String, Sequencer>> list = new ArrayList<>();
+		list.addAll(words.entrySet());
+		Collections.sort(list,new EntryComperator());
+//		for(Map.Entry<String,Sequencer> eintrag: words.entrySet()) {
+//			System.out.println(eintrag.getKey() + " " + eintrag.getValue().getInt());
+//		}
+//		
+		for(Map.Entry<String, Sequencer> keineAhnung:list) {
+			System.out.println(keineAhnung.getKey() + " " + keineAhnung.getValue().getInt());
+		}
+	}
+
+}
