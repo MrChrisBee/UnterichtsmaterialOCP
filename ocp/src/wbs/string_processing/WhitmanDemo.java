@@ -18,7 +18,6 @@ import java.util.TreeMap;
  *  wir ignorieren groß und kleinschriebung
  */
 
-
 public class WhitmanDemo {
 
 	public static void main(String[] args) {
@@ -31,29 +30,36 @@ public class WhitmanDemo {
 		File file = new File(path);
 		String token;
 		try (Scanner scanner = new Scanner(file)) {
-			scanner.useDelimiter("\\W+");
+			scanner.useDelimiter("\\s|[,.!?()]");
 			while (scanner.hasNext()) { // sichere Ihren Inhalt
 				token = scanner.next().toLowerCase();
-				if (!listOfWords.contains(token)) {
-					listOfWords.add(token);
-					words.put(token, new Sequencer());
-					words.get(token).next();
-				} else {
-					words.get(token).next(); // zähle hoch
+				if (token.matches("[0-9a-z']+.*[a-z']+|[a-z]")) {
+					if (!listOfWords.contains(token)) {
+						listOfWords.add(token);
+						words.put(token, new Sequencer());
+						words.get(token).next();
+					} else {
+						words.get(token).next(); // zähle hoch
+					}
 				}
+
 			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
-		List<Map.Entry<String, Sequencer>> list = new ArrayList<>();
-		list.addAll(words.entrySet());
-		Collections.sort(list,new EntryComperator());
-//		for(Map.Entry<String,Sequencer> eintrag: words.entrySet()) {
-//			System.out.println(eintrag.getKey() + " " + eintrag.getValue().getInt());
-//		}
-//		
-		for(Map.Entry<String, Sequencer> keineAhnung:list) {
-			System.out.println(keineAhnung.getKey() + " " + keineAhnung.getValue().getInt());
+
+		for (Map.Entry<String, Sequencer> eintrag : words.entrySet()) {
+			System.out.println(eintrag.getKey() + " " + eintrag.getValue().getInt());
+		}
+		for (int i = 0; i < 5; i++) {
+			System.out.println("*************************************************************************************");
+		}
+		List<Map.Entry<String, Sequencer>> list = new ArrayList<>(words.entrySet());
+		// list.addAll();
+		Collections.sort(list, new EntryComperator());
+
+		for (Map.Entry<String, Sequencer> listEntry : list) {
+			System.out.println(listEntry.getKey() + " " + listEntry.getValue().getInt());
 		}
 	}
 

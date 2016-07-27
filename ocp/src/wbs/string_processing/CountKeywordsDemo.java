@@ -5,13 +5,11 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /*
  * Wir iterieren über alle Java-Sourcen in einem Verzeichnis und ermitteln
@@ -27,27 +25,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * - AtomicInteger
  */
 
-class Sequencer {
 
-	private final AtomicInteger atomicInt = new AtomicInteger(0);
 
-	public Integer next() {
-		return atomicInt.getAndIncrement();
-	}
-
-	public int getInt() {
-		return atomicInt.intValue();
-	}
-}
-
-class EntryComperator implements Comparator<Map.Entry<String, Sequencer>> {
-
-	@Override
-	public int compare(Entry<String, Sequencer> o1, Entry<String, Sequencer> o2) {
-		int diff = Integer.compare(o2.getValue().getInt(), o1.getValue().getInt());
-		return diff != 0 ? diff : o1.getKey().compareTo(o2.getKey());
-	}
-}
 
 public class CountKeywordsDemo {
 
@@ -55,7 +34,7 @@ public class CountKeywordsDemo {
 		// nutze den Sequenzer in einer map
 		Map<String, Sequencer> javaKeyWords = new HashMap<>();
 		// greife auf die .txt Datei zu 
-		String path = "recources//io//java_keywords.txt";
+		String path = "recources//io//characterdata//java_keywords.txt";
 		File file = new File(path);
 		try (Scanner scanner = new Scanner(file)) {
 			scanner.useDelimiter("\\W+");
