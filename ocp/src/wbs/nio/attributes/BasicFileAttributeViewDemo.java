@@ -9,7 +9,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 public class BasicFileAttributeViewDemo {
 	public static void main(String[] args) {
-		String dir = "d:/jseocp11/eclipse_workspace";
+		String dir = "resources/io/characterdata/";
 		Path path = Paths.get(dir);
 		BasicFileAttributeView bfav = Files.getFileAttributeView(path, BasicFileAttributeView.class);
 		try {
