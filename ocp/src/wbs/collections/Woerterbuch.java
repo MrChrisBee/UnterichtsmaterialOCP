@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -41,7 +42,9 @@ import java.util.TreeSet;
  * geändert wurde)
  */
 
-public class Woerterbuch {
+public class Woerterbuch implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private NavigableMap<String, NavigableSet<String>> dictionary;
 
@@ -73,8 +76,7 @@ public class Woerterbuch {
 
 	public boolean putWords(String srcWord, String dstWord, String... dstWords) {
 		boolean isChanged_1 = putWord(srcWord, dstWord);
-		boolean isChanged_2 = dictionary.get(srcWord).addAll(
-				Arrays.asList(dstWords));
+		boolean isChanged_2 = dictionary.get(srcWord).addAll(Arrays.asList(dstWords));
 		return (isChanged_1 || isChanged_2);
 	}
 
@@ -82,12 +84,10 @@ public class Woerterbuch {
 	// srcWord(1), dstOldWord(0) -> false
 	// srcWord(1), dstOldWord(1), dstNewWord(1) -> false
 	// srcWord(1), dstOldWord(1), dstNewWord(0) -> true
-	public boolean updateWord(String srcWord, String dstOldWord,
-			String dstNewWord) {
+	public boolean updateWord(String srcWord, String dstOldWord, String dstNewWord) {
 		boolean isChanged = false;
 		NavigableSet<String> dstWords = dictionary.get(srcWord);
-		if (dstWords != null && dstWords.contains(dstOldWord)
-				&& !dstWords.contains(dstNewWord)) {
+		if (dstWords != null && dstWords.contains(dstOldWord) && !dstWords.contains(dstNewWord)) {
 			dstWords.remove(dstOldWord);
 			dstWords.add(dstNewWord);
 			isChanged = true;
@@ -123,11 +123,17 @@ public class Woerterbuch {
 		return dictionary.keySet();
 	}
 
+	public Set<String> getSrcWords() {
+		return dictionary.keySet();
+	}
+
+	public Set<String> getEntry(String srcWords) {
+		return dictionary.get(srcWords);
+	}
+
 	public Woerterbuch invertDict() {
-		Woerterbuch inverted = new Woerterbuch(this.getDstLanguage(),
-				this.getSrcLanguage());
-		for (Map.Entry<String, NavigableSet<String>> entry : dictionary
-				.entrySet()) {
+		Woerterbuch inverted = new Woerterbuch(this.getDstLanguage(), this.getSrcLanguage());
+		for (Map.Entry<String, NavigableSet<String>> entry : dictionary.entrySet()) {
 			for (String word : entry.getValue()) {
 				inverted.putWord(word, entry.getKey());
 			}
@@ -142,17 +148,13 @@ public class Woerterbuch {
 	 * wb1: a -> b (österreichisch -> hochdeutsch) wb2: b -> c (hochdeutsch ->
 	 * plattdeutsch) ergebnis: wb3: a -> c (österreichisch -> plattdeutsch)
 	 */
-	public static Woerterbuch combine(Woerterbuch wb1, Woerterbuch wb2)
-			throws IllegalArgumentException {
-		if (!wb1.getDstLanguage().equals(wb2.getSrcLanguage())
-				|| wb2.getDstLanguage().equals(wb1.getSrcLanguage())) {
+	public static Woerterbuch combine(Woerterbuch wb1, Woerterbuch wb2) throws IllegalArgumentException {
+		if (!wb1.getDstLanguage().equals(wb2.getSrcLanguage()) || wb2.getDstLanguage().equals(wb1.getSrcLanguage())) {
 			throw new IllegalArgumentException("invalid arguments...");
 		}
-		Woerterbuch wb = new Woerterbuch(wb1.getSrcLanguage(),
-				wb2.getDstLanguage());
+		Woerterbuch wb = new Woerterbuch(wb1.getSrcLanguage(), wb2.getDstLanguage());
 		NavigableSet<String> words;
-		for (Map.Entry<String, NavigableSet<String>> entry : wb1.dictionary
-				.entrySet()) {
+		for (Map.Entry<String, NavigableSet<String>> entry : wb1.dictionary.entrySet()) {
 			for (String srcWord : entry.getValue()) {
 				words = wb2.getWords(srcWord);
 				if (words != null) {
@@ -204,8 +206,7 @@ public class Woerterbuch {
 		int nTokens;
 		int nLines = 1;
 		try (PrintWriter pw = new PrintWriter(path)) {
-			for (Map.Entry<String, NavigableSet<String>> entry : dictionary
-					.entrySet()) {
+			for (Map.Entry<String, NavigableSet<String>> entry : dictionary.entrySet()) {
 				nTokens = 1;
 				pw.print(entry.getKey() + ":");
 				numberOfTokens = entry.getValue().size();
@@ -216,7 +217,7 @@ public class Woerterbuch {
 					}
 					nTokens++;
 				}
-				if(nLines < numberOfLines) {
+				if (nLines < numberOfLines) {
 					pw.println();
 				}
 				nLines++;

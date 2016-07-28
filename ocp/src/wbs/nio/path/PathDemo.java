@@ -1,4 +1,4 @@
-package nio.path;
+package wbs.nio.path;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

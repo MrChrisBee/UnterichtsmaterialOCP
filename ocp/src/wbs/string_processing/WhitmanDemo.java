@@ -2,6 +2,7 @@ package wbs.string_processing;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,7 @@ public class WhitmanDemo {
 		Map<String, Sequencer> words = new TreeMap<>();
 		// greife auf die .txt Datei zu
 		List<String> listOfWords = new ArrayList<>();
-		String path = "recources//io//characterdata//song_of_myself_whitman.txt";
+		String path = "resources//io//characterdata//song_of_myself_whitman.txt";
 		File file = new File(path);
 		String token;
 		try (Scanner scanner = new Scanner(file)) {
@@ -48,18 +49,34 @@ public class WhitmanDemo {
 			ioe.printStackTrace();
 		}
 
-		for (Map.Entry<String, Sequencer> eintrag : words.entrySet()) {
-			System.out.println(eintrag.getKey() + " " + eintrag.getValue().getInt());
-		}
-		for (int i = 0; i < 5; i++) {
-			System.out.println("*************************************************************************************");
-		}
+//		for (Map.Entry<String, Sequencer> eintrag : words.entrySet()) {
+//			System.out.println(eintrag.getKey() + " " + eintrag.getValue().getInt());
+//		}
+//		for (int i = 0; i < 5; i++) {
+//			System.out.println("*************************************************************************************");
+//		}
 		List<Map.Entry<String, Sequencer>> list = new ArrayList<>(words.entrySet());
 		// list.addAll();
 		Collections.sort(list, new EntryComperator());
 
-		for (Map.Entry<String, Sequencer> listEntry : list) {
-			System.out.println(listEntry.getKey() + " " + listEntry.getValue().getInt());
+//		for (Map.Entry<String, Sequencer> listEntry : list) {
+//			System.out.println(listEntry.getKey() + " " + listEntry.getValue().getInt());
+//		}
+		/*
+		 * das Ergebnis soll jetzt noch in eine Datei
+		 */
+		String pathToOutput = "resources//io//characterdata//song_of_myself_whitman_data.txt";
+		try (PrintWriter myPW = new PrintWriter(pathToOutput)){
+			int alleWoerter = 0;
+			for (Map.Entry<String, Sequencer> listEntry : list) {
+				System.out.println(listEntry.getKey() + " " + listEntry.getValue().getInt());
+				myPW.printf("%-15s : %5d%n", listEntry.getKey(),listEntry.getValue().getInt());
+				alleWoerter += listEntry.getValue().getInt();
+			}	
+			myPW.printf("Summe aller erfassten Wörter : %10s", alleWoerter);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 	}
 
