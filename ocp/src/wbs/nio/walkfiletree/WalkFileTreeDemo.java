@@ -1,9 +1,11 @@
-package wbs.nio.file;
+package wbs.nio.walkfiletree;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import wbs.nio.file.MySimpleFileVisitor;
 
 public class WalkFileTreeDemo {
 	public static void main(String[] args) {
