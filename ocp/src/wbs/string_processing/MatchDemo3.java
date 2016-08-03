@@ -16,7 +16,7 @@ public class MatchDemo3 {
 		Pattern p1 = Pattern.compile(regex1);
 		Matcher m1 = p1.matcher(s1);
 		while (m1.find()) {
-			System.out.print(m1.start() + "<" + m1.group() + ">");
+			System.out.println(m1.start() + "<" + m1.group() + ">");
 		}
 		// 2< eins >11< eins >
 	}

@@ -24,5 +24,6 @@ public class ReaderWriterDemo {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.printf("%f%n",Math.PI);
 	}
 }
