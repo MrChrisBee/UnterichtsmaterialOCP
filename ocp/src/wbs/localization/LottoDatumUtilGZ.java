@@ -1,8 +1,10 @@
 package wbs.localization;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 // return- wert einheitlich (uhrzeit) liefern, immer neues Date- objekt erzeugen
 
@@ -13,6 +15,37 @@ import java.util.GregorianCalendar;
 // TODO ggf. enum Teilnahme
 
 public final class LottoDatumUtilGZ {
+	
+	public static List<Date> ziehungsTage(Date abgabeDatum, boolean isMittwoch, boolean isSamstag, int abgabeSchlussMittwoch, int abgabeschlussSamstag, int laufzeit) {
+		List<Date> result = new ArrayList<>();
+		GregorianCalendar myGcal = new GregorianCalendar();
+		myGcal.setTime(ersterZiehungstag(abgabeDatum, isMittwoch, isSamstag, abgabeSchlussMittwoch, abgabeschlussSamstag)); 
+		int dayDiff = 0;
+		if (myGcal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) { // myGcal kann nur Mittwoch oder Samstag sein
+			dayDiff = 4; // nächster Mittwoch in 4 Tagen
+		} else dayDiff = 3; // nächster Samstag in 3 Tagen
+		for(int i=0; i < laufzeit; i++) {
+			if(isMittwoch && isSamstag) { // will man an beiden Ziehungen Teilnehmen
+//					
+//			
+			} else if (isMittwoch) {
+				result.add(nextMittwoch());
+			} else if (isSamstag) {
+				result.add(nextSamstag());
+			}
+		}
+		return result;
+	}
+	
+	private static Date nextSamstag() {
+		
+		return null;
+	}
+
+	private static Date nextMittwoch() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	public static Date ersterZiehungstag(Date abgabeDatum, boolean isMittwoch,
 			boolean isSamstag, int abgabeSchlussMittwoch, int abgabeschlussSamstag) {

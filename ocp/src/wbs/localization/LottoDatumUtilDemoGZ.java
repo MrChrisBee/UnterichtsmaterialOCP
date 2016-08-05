@@ -17,6 +17,7 @@ public class LottoDatumUtilDemoGZ {
 				"EEE', der 'dd. MMMM yyyy");
 
 		List<GregorianCalendar> abgabeDaten = new ArrayList<>();
+		List<Date> ziehungen = new ArrayList<>();
 		Date naechsterZiehungstag;
 		
 		GregorianCalendar dienstag = new GregorianCalendar(2016, Calendar.AUGUST, 2);
@@ -56,25 +57,32 @@ public class LottoDatumUtilDemoGZ {
 		abgabeDaten.add(samstagNach19);
 		abgabeDaten.add(sonntag);
 		
+//		System.out.println("--- nur mittwoch ---");
+//		for(GregorianCalendar abgabeDatum : abgabeDaten) {
+//			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), true,
+//					false, 18, 19);
+//			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
+//		}
 		System.out.println("--- nur mittwoch ---");
 		for(GregorianCalendar abgabeDatum : abgabeDaten) {
-			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), true,
-					false, 18, 19);
-			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
+			ziehungen = LottoDatumUtilGZ.ziehungsTage(abgabeDatum.getTime(), true, false, 18, 19, 6);
+			System.out.println(sdf1.format(abgabeDatum.getTime())+":");
+			for(Date tach :ziehungen) {
+				System.out.println(tach);
+			}
 		}
-		
-		System.out.println("--- nur samstag ---");
-		for(GregorianCalendar abgabeDatum : abgabeDaten) {
-			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), false,
-					true, 18, 19);
-			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
-		}
-		
-		System.out.println("--- mittwoch und samstag ---");
-		for(GregorianCalendar abgabeDatum : abgabeDaten) {
-			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), true,
-					true, 18, 19);
-			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
-		}
+//		System.out.println("--- nur samstag ---");
+//		for(GregorianCalendar abgabeDatum : abgabeDaten) {
+//			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), false,
+//					true, 18, 19);
+//			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
+//		}
+//		
+//		System.out.println("--- mittwoch und samstag ---");
+//		for(GregorianCalendar abgabeDatum : abgabeDaten) {
+//			naechsterZiehungstag = LottoDatumUtilGZ.ersterZiehungstag(abgabeDatum.getTime(), true,
+//					true, 18, 19);
+//			System.out.println(sdf1.format(abgabeDatum.getTime()) + " -> " + sdf2.format(naechsterZiehungstag));
+//		}
 	}
 }

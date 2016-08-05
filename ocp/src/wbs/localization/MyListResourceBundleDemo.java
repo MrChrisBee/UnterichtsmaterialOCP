@@ -14,5 +14,10 @@ public class MyListResourceBundleDemo {
 			System.out.println(bundle.getObject("capital") + " -> " + bundle.getObject("capital").getClass());
 			System.out.println("----");
 		}
+		/*
+		 * Habe noch keine Ahnung wie eine Anwendung aussieht die das gewinnbringend einsetzt
+		 * Vielleicht z.B. wenn es um Preisangaben geht die dann entsprechend ausgewiesen 
+		 * und was ich mir schwerer vorstelle   
+		 */
 	}
 }
