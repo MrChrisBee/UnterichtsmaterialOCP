@@ -13,12 +13,11 @@ public class LottoDatumUtilDemoGZ {
 
 		SimpleDateFormat sdf1 = new SimpleDateFormat(
 				"EEE', der 'dd. MMMM yyyy, HH:mm");
-		SimpleDateFormat sdf2 = new SimpleDateFormat(
-				"EEE', der 'dd. MMMM yyyy");
+		//SimpleDateFormat sdf2 = new SimpleDateFormat("EEE', der 'dd. MMMM yyyy");
 
 		List<GregorianCalendar> abgabeDaten = new ArrayList<>();
 		List<Date> ziehungen = new ArrayList<>();
-		Date naechsterZiehungstag;
+		//Date naechsterZiehungstag;
 		
 		GregorianCalendar dienstag = new GregorianCalendar(2016, Calendar.AUGUST, 2);
 		dienstag.set(Calendar.HOUR_OF_DAY, 21);

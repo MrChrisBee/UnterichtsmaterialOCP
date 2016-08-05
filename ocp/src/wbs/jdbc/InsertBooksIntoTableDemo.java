@@ -55,7 +55,7 @@ public class InsertBooksIntoTableDemo {
 						if (count < 4) {
 							pstmt.setString(count, token);
 						} else {
-							// das letzte Feld ist vom typ double
+							// das letzte Feld ist vom Typ double
 							pstmt.setDouble(4, Double.parseDouble(token));
 							// ausführen des PreparedStatements
 							try {
