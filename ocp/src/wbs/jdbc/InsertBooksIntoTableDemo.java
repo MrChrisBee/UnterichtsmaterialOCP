@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class InsertBooksIntoTableDemo {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args)  {
 
 		// Verbindung zur Datenbank deklarieren
 		String url = "jdbc:mysql://127.0.0.1:3306/jdbc?useUnicode=yes&characterEncoding=UTF-8";
@@ -22,7 +22,13 @@ public class InsertBooksIntoTableDemo {
 		String password = "";
 		// Pfad zur insert-sql-Datei deklarieren
 		String path = "resources/sql/insertBooks.sql";
-		String sql = new String(Files.readAllBytes(Paths.get(path)));
+		String sql = "";
+		try {
+			sql = new String(Files.readAllBytes(Paths.get(path)));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// Pfad zur Eingabedatei deklarieren
 		String pathBooks = "resources/sql/books.txt";
 		File file = new File(pathBooks);
