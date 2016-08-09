@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Savepoint;
 
 public class SavepointDemo {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		String url = "jdbc:mysql://localhost:3306/jdbc";
 		String user = "root";
