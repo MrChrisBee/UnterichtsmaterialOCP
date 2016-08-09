@@ -82,7 +82,7 @@ public class JoinRowSetDemo {
 				System.out.print(cachedRowSetBuch.getString(3) + " ");
 				System.out.println(cachedRowSetBuch.getDouble(4));
 			}
-			System.out.println("****************************************");
+			System.out.println("******************* *********************");
 			cachedRowSetExemplar.setUrl(url);
 			cachedRowSetExemplar.setUsername(user);
 			cachedRowSetExemplar.setPassword(password);
