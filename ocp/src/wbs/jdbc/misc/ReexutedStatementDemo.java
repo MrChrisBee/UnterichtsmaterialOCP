@@ -38,7 +38,7 @@ public class ReexutedStatementDemo {
 						+ resultSet2.getDouble("preis"));
 			}
 		} catch (SQLException sqle) {
-			sqle.printStackTrace();
+			sqle.printStackTrace(); 
 		}
 	}
 
