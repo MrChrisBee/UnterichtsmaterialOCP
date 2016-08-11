@@ -11,6 +11,7 @@ public class ExtendsThreadDemo {
 	public static void main(String[] args) {
 		ExtendsThread extendsThread = new ExtendsThread();
 		extendsThread.start();
+		//extendsThread.run(); // hier startet KEIN neuer Thread
 		System.out.println("Ausgabe von main : " + Thread.currentThread());
 	}
 }
