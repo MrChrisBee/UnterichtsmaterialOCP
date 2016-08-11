@@ -11,7 +11,7 @@ class RaceCondition extends Thread {
 	}
 
 	public void run() {
-		for (int i = 1; i <= 100000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			li.add(i);
 		}
 	}
@@ -19,7 +19,7 @@ class RaceCondition extends Thread {
 
 public class RaceConditionDemo {
 	public static void main(String[] args) {
-		List<Integer> li = new ArrayList<>();
+		List<Integer> li = new ArrayList<>(); // definitiv nicht Thread-Safe
 		RaceCondition rc1 = new RaceCondition(li);
 		RaceCondition rc2 = new RaceCondition(li);
 		rc1.start();
