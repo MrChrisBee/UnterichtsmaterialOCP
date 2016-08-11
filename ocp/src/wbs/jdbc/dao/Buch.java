@@ -21,14 +21,14 @@ public class Buch implements Serializable {
 		super();
 	}
 
-	@Column
+	@Column(length="20")
 	@PrimaryKey(index=1)
 	private String isbn = "";
-	@Column
+	@Column(length="40")
 	private String titel = "";
-	@Column
+	@Column(length="20")
 	private String autor = "";
-	@Column
+	@Column(length="8,2")
 	private double preis = 0.0;
 
 	public String getIsbn() {

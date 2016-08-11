@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
 // Die Annotation muss vor einem Feld der Klasse positioniert werden 
 @Target(ElementType.FIELD)
 public @interface Column {
+	String length();
 }

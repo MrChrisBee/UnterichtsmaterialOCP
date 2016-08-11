@@ -2,7 +2,6 @@ package wbs.jdbc.annotation;
 
 import javax.xml.parsers.SAXParserFactory;
 
-import org.xml.sax.ContentHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 
@@ -19,12 +18,12 @@ public class SimpleSaxHandlerDemo {
 		
 		XMLReader reader = factory.newSAXParser().getXMLReader();
 		
-		SqlUtilHandler handler = new SqlUtilHandler();
+		SQLUtilHandler handler = new SQLUtilHandler();
 		
 		reader.setContentHandler(handler);
 		reader.parse(source);
 		
-		System.out.println(handler.getSqlUtilConfig().getConnection());
+		System.out.println(handler.getSQLConfig().getConnection());
 		
 	}
 }

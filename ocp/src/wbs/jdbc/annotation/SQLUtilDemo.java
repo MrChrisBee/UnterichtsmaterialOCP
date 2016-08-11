@@ -7,7 +7,7 @@ public class SQLUtilDemo {
 
 	public static void main(String[] args) throws Exception {
 		
-		SQLUtil sqlUtil = new SQLUtil();
+		SQLUtilCB sqlUtil = new SQLUtilCB();
 				
 		Map<String, String> tableMappings = new HashMap<String, String>();
 		Map<String, String> typeMappings = new HashMap<String, String>();
