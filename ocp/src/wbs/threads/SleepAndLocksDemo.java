@@ -29,8 +29,8 @@ public class SleepAndLocksDemo {
 		Object o = new Object();
 		try {
 			synchronized (o) {
-				Thread thread = new Sleeper(o, Thread.currentThread());
-				thread.start();
+				Thread sleeper = new Sleeper(o, Thread.currentThread());
+				sleeper.start();
 				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {
