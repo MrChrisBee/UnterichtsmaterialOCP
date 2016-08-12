@@ -70,7 +70,6 @@ public class PrimfaktorenThreadsDemo {
 
 	public static void main(String[] args) {
 		try (PrintWriter pw = new PrintWriter(file);) {
-			
 			Long[] longArr = new Long[25];
 			Random rnd = new Random();
 			for (int i = 0; i < 25; i++) {
